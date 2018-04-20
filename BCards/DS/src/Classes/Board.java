@@ -6,7 +6,6 @@ import java.util.Scanner;
 /**
  * Created by Joshua Rosen on 7/13/2016.
  */
-//
 public class Board {
     private Scanner scan;
     private Player p1;
@@ -32,24 +31,25 @@ public class Board {
 
         //if flag is false then player one will go first using method.
         if (!flag){
-            this.oneT();
-            this.twoT();
-            this.flag = true;
+            this.turn(p1);
+            this.turn(p2);
+            this.flag = !this.flag;
         }
         //if flag is true then player two will go first using method.
         else{
-            this.twoT();
-            this.oneT();
-            this.flag = false;
+            this.turn(p2);
+            this.turn(p1);
+            this.flag = !this.flag;
         }
 
     }
     //start by moving cards from hand to board
-    public void oneT(){
-        p1.nextTurn();
-        p1.giveCards();
+    //number input not working correctly
+    public void turn(Player p){
+        p.nextTurn();
+        p.giveCards();
 
-        System.out.println("It is " + p1.getName() + "'s turn.");
+        System.out.println("It is " + p.getName() + "'s turn.");
         String userInput = "";
 
         while (!userInput.equals("end")) {
@@ -58,9 +58,34 @@ public class Board {
             userInput = scan.nextLine();
             switch (userInput) {
                 case "h":
-                    p1.showCards();
+                    p.showCards();
+                case "1":
+                    System.out.println("1 typed");
+                case "one":
+                    p.playCard(0);
+                case "two":
+                    p.playCard(1);
+                case "three":
+                    p.playCard(2);
+                case "four":
+                    p.playCard(3);
+                case "five":
+                    p.playCard(4);
+                case "six":
+                    p.playCard(5);
+                case "seven":
+                    p.playCard(6);
+                case "eight":
+                    p.playCard(7);
+                case "nine":
+                    p.playCard(8);
+                case "ten":
+                    p.playCard(9);
+                case "eleven":
+                    p.playCard(10);
+                case "b":
+                    p.showBoard();
                 case "end":
-                    //ends turn
                     break;
                 default:
                     System.out.println("Command not recognized.\n");;
@@ -68,28 +93,7 @@ public class Board {
         }
     }
 
-    public void twoT(){
-        p2.nextTurn();
-        p2.giveCards();
 
-        System.out.println("It is " + p2.getName() + "'s turn.");
-        String userInput = "";
-
-        while (!userInput.equals("end")) {
-            System.out.println("Type 'h' to see your hand.");
-            System.out.println("Type 'end' to end your turn.\n");
-            userInput = scan.nextLine();
-            switch (userInput) {
-                case "h":
-                    p2.showCards();
-                case "end":
-                    //ends turn
-                    break;
-                default:
-                    System.out.println("Command not recognized.\n");;
-            }
-        }
-    }
 
     public Scanner getScan() {
         return scan;
@@ -108,6 +112,8 @@ public class Board {
         Player p1 = game.getP1();
         Player p2 = game.getP2();
 
+        //move cards from hand to board
         game.turn();
+
     }
 }

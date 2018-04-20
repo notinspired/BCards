@@ -7,7 +7,6 @@ import java.util.Random;
 /**
  * Created by Joshua Rosen on 3/14/2017.
  */
-//
 public class Card {
     private int cost;
     private String type;
