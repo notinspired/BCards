@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * Created by Joshua Rosen on 7/13/2016.
  */
-
+//
 public class Board {
     private Scanner scan;
     private Player p1;
