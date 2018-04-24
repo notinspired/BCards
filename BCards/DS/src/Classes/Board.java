@@ -54,45 +54,71 @@ public class Board {
 
         while (!userInput.equals("end")) {
             System.out.println("Type 'h' to see your hand.");
+            System.out.println("Type 'b' to see your board.");
+            System.out.println("Type 'o' to see your opponents board.");
+            System.out.println("Type the card number to play that card.");
             System.out.println("Type 'end' to end your turn.\n");
             userInput = scan.nextLine();
             switch (userInput) {
                 case "h":
                     p.showCards();
+                    break;
                 case "1":
-                    System.out.println("1 typed");
-                case "one":
                     p.playCard(0);
-                case "two":
+                    break;
+                case "2":
                     p.playCard(1);
-                case "three":
+                    break;
+                case "3":
                     p.playCard(2);
-                case "four":
+                    break;
+                case "4":
                     p.playCard(3);
-                case "five":
+                    break;
+                case "5":
                     p.playCard(4);
-                case "six":
+                    break;
+                case "6":
                     p.playCard(5);
-                case "seven":
+                    break;
+                case "7":
                     p.playCard(6);
-                case "eight":
+                    break;
+                case "8":
                     p.playCard(7);
-                case "nine":
+                    break;
+                case "9":
                     p.playCard(8);
-                case "ten":
+                    break;
+                case "10":
                     p.playCard(9);
-                case "eleven":
+                    break;
+                case "11":
                     p.playCard(10);
+                    break;
                 case "b":
-                    p.showBoard();
+                    p.showBoard(p);
+                    break;
+                case "o":
+                    p.showBoard((otherPlayer(p)));
+                    break;
                 case "end":
                     break;
                 default:
                     System.out.println("Command not recognized.\n");;
+                    break;
             }
         }
     }
 
+    private Player otherPlayer(Player p) {
+        if (p.getName().equals(getP1().getName())){
+            return getP2();
+        }
+        else{
+            return getP1();
+        }
+    }
 
 
     public Scanner getScan() {

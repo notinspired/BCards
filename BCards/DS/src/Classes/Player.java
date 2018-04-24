@@ -23,6 +23,7 @@ public class Player {
         this.name = name;
         this.turn = 0;
         this.cards = new ArrayList<Card>();
+        this.played = new ArrayList<Card>();
         this.lifepoints = 15;
     }
 
@@ -74,30 +75,37 @@ public class Player {
         }
         else{
             this.cards.get(i).setBoard();
+            this.played.add(this.cards.get(i));
+            this.cards.remove(i);
         }
     }
-    public void showBoard(){
-        String a = "";
-        int i = 0;
-        while (i < this.played.size()){
-            Card b = this.played.get(i);
-            if (b.getType().equals("Creature")){
-                a = a + "Played " + (i + 1) + ": ";
-                a = a + "Creature: ";
-                a = a + "Cost " + Integer.toString((b.getCost())) + ", ";
-                a = a + "Health " + Integer.toString((b.getHealth())) + ", ";
-                a = a + "Attack " + Integer.toString((b.getAttack())) + " \n";
-            }
-            i++;
-//            else if(this.cards.get(i) instanceof Spell){
-//                Spell b = (Spell) this.cards.get(i);
-//            }
-//            else{
-//
-//            }
+    public void showBoard(Player p){
+        if (p.played.size()==0){
+            System.out.println(p.getName() + "'s side of the board is currently empty");
         }
-        System.out.println(this.getName() + "'s board: ");
-        System.out.println(a);
+        else {
+            String a = "";
+            int i = 0;
+            while (i < p.played.size()) {
+                Card b = p.played.get(i);
+                if (b.getType().equals("Creature")) {
+                    a = a + "Played " + (i + 1) + ": ";
+                    a = a + "Creature: ";
+                    a = a + "Cost " + Integer.toString((b.getCost())) + ", ";
+                    a = a + "Health " + Integer.toString((b.getHealth())) + ", ";
+                    a = a + "Attack " + Integer.toString((b.getAttack())) + " \n";
+                }
+                i++;
+                //            else if(this.cards.get(i) instanceof Spell){
+                //                Spell b = (Spell) this.cards.get(i);
+                //            }
+                //            else{
+                //
+                //            }
+            }
+            System.out.println(p.getName() + "'s board: ");
+            System.out.println(a);
+        }
     }
 
 //    to make the code look sexy implement this
