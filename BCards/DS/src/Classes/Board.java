@@ -33,13 +33,11 @@ public class Board {
         if (!flag){
             this.turn(p1);
             this.turn(p2);
-            this.flag = !this.flag;
         }
         //if flag is true then player two will go first using method.
         else{
             this.turn(p2);
             this.turn(p1);
-            this.flag = !this.flag;
         }
 
     }
@@ -55,8 +53,10 @@ public class Board {
         while (!userInput.equals("end")) {
             System.out.println("Type 'h' to see your hand.");
             System.out.println("Type 'b' to see your board.");
-            System.out.println("Type 'o' to see your opponents board.");
+            System.out.println("Type 'o' to see your opponent's board.");
             System.out.println("Type the card number to play that card.");
+            System.out.println("Type 'x' to see your health.");
+            System.out.println("Type 'z' to see your opponent's health.");
             System.out.println("Type 'end' to end your turn.\n");
             userInput = scan.nextLine();
             switch (userInput) {
@@ -102,6 +102,12 @@ public class Board {
                 case "o":
                     p.showBoard((otherPlayer(p)));
                     break;
+                case "x":
+                    p.health(p);
+                    break;
+                case "z":
+                    p.health(otherPlayer(p));
+                    break;
                 case "end":
                     break;
                 default:
@@ -139,7 +145,14 @@ public class Board {
         Player p2 = game.getP2();
 
         //move cards from hand to board
-        game.turn();
-
+        while (game.getP1().lose() || game.getP2().lose()){
+            game.turn();
+        }
+        if (game.getP1().lose()){
+            System.out.println(game.getP2().getName() + " wins!");
+        }
+        else{
+            System.out.println(game.getP1().getName() + " wins!");
+        }
     }
 }

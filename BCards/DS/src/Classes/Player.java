@@ -130,5 +130,17 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    public void health(Player p){
+        System.out.println(p.getName() + " has " + Integer.toString(p.lifepoints) + " lifepoints remaining.");
+    }
+    public boolean lose(){
+        if (this.lifepoints > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
 
