@@ -41,8 +41,6 @@ public class Board {
         }
 
     }
-    //start by moving cards from hand to board
-    //number input not working correctly
     public void turn(Player p){
         p.nextTurn();
         p.giveCards();
@@ -51,15 +49,20 @@ public class Board {
         String userInput = "";
 
         while (!userInput.equals("end")) {
+            System.out.println("Type 'p' to see how much power you have.");
             System.out.println("Type 'h' to see your hand.");
             System.out.println("Type 'b' to see your board.");
             System.out.println("Type 'o' to see your opponent's board.");
+            System.out.println("Type 'a' to use your cards to attack.");
             System.out.println("Type the card number to play that card.");
             System.out.println("Type 'x' to see your health.");
             System.out.println("Type 'z' to see your opponent's health.");
             System.out.println("Type 'end' to end your turn.\n");
             userInput = scan.nextLine();
             switch (userInput) {
+                case "p":
+                    p.getPower();
+                    break;
                 case "h":
                     p.showCards();
                     break;
@@ -110,6 +113,8 @@ public class Board {
                     break;
                 case "end":
                     break;
+                case "a":
+                    break;
                 default:
                     System.out.println("Command not recognized.\n");;
                     break;
@@ -144,7 +149,6 @@ public class Board {
         Player p1 = game.getP1();
         Player p2 = game.getP2();
 
-        //move cards from hand to board
         while (game.getP1().lose() || game.getP2().lose()){
             game.turn();
         }

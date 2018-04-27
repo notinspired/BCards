@@ -15,7 +15,6 @@ public class Player {
     private List<Card> played;
     private int power;
     private int lifepoints;
-//    private List<Classes.Card> played;
 //    private List<Classes.Card> discard;
 
 
@@ -68,15 +67,20 @@ public class Player {
     }
 
     public void playCard(int i){
-        //give ability to choose between cards
         int size = this.cards.size();
         if (i == size || i < 0){
             System.out.println("Sorry you don't have a card with that number");
         }
         else{
-            this.cards.get(i).setBoard();
-            this.played.add(this.cards.get(i));
-            this.cards.remove(i);
+            if (this.cards.get(i).getCost()>this.power){
+                System.out.println("That card costs too much to play!");
+            }
+            else{
+                this.power = this.power - this.cards.get(i).getCost();
+                this.cards.get(i).setBoard();
+                this.played.add(this.cards.get(i));
+                this.cards.remove(i);
+            }
         }
     }
     public void showBoard(Player p){
@@ -108,6 +112,21 @@ public class Player {
         }
     }
 
+    public void attack(){
+        //we would need an input number and something to show that we are attacking.
+        //if i could take the scanner into the attack function then i could have them
+        //type a to get here and then.. display the board/card numbers and ask for the card in interest.
+        //from here we could show them options from the opponents board
+        //so we definitly need the scanner.
+        //step 1 type a
+            // check if they have cards on the board. if they do not break from the function.
+        //step 2 type the card you want to use -
+        // side note make this true: cards can only attack once per turn?
+        //step 3 select target. need an option for attack opponent directly.
+        // -- do this later, i believe if we want it we need both players as input to the function.
+        //start with scanner.
+    }
+
 //    to make the code look sexy implement this
 //    public String returnString(Card a){
 //        if (a.getType().equals("Creature")){
@@ -129,6 +148,10 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public void getPower(){
+        System.out.println(this.getName() +" has " + this.power + " power.");
     }
 
     public void health(Player p){
