@@ -43,27 +43,32 @@ public class Player {
         this.cards = cards;
     }
     public void showCards(){
-        String a = "";
-        int i = 0;
-        while (i < this.cards.size()){
-            Card b = this.cards.get(i);
-            if (b.getType().equals("Creature")){
-                a = a + "Card " + (i + 1) + ": ";
-                a = a + "Creature: ";
-                a = a + "Cost " + Integer.toString((b.getCost())) + ", ";
-                a = a + "Health " + Integer.toString((b.getHealth())) + ", ";
-                a = a + "Attack " + Integer.toString((b.getAttack())) + " \n";
-            }
-            i++;
-//            else if(this.cards.get(i) instanceof Spell){
-//                Spell b = (Spell) this.cards.get(i);
-//            }
-//            else{
-//
-//            }
+        if (this.cards.size()==0) {
+            System.out.println(this.getName() + " has no cards!");
         }
-        System.out.println(this.getName() + "'s cards: ");
-        System.out.println(a);
+        else {
+            String a = "";
+            int i = 0;
+            while (i < this.cards.size()) {
+                Card b = this.cards.get(i);
+                if (b.getType().equals("Creature")) {
+                    a = a + "Card " + (i + 1) + ": ";
+                    a = a + "Creature: ";
+                    a = a + "Cost " + Integer.toString((b.getCost())) + ", ";
+                    a = a + "Health " + Integer.toString((b.getHealth())) + ", ";
+                    a = a + "Attack " + Integer.toString((b.getAttack())) + " \n";
+                }
+                i++;
+                //            else if(this.cards.get(i) instanceof Spell){
+                //                Spell b = (Spell) this.cards.get(i);
+                //            }
+                //            else{
+                //
+                //            }
+            }
+            System.out.println(this.getName() + "'s cards: ");
+            System.out.println(a);
+        }
     }
 
     public void playCard(int i){

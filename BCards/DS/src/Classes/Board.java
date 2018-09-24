@@ -41,25 +41,38 @@ public class Board {
         }
 
     }
+
+    public void instruct(Player p){
+        System.out.println("It is " + p.getName() + "'s turn.");
+        System.out.println("Type '?' to see available commands.");
+        System.out.println("Type 'p' to see how much power you have.");
+        System.out.println("Type 'h' to see your hand.");
+        System.out.println("Type 'b' to see your board.");
+        System.out.println("Type 'o' to see your opponent's board.");
+        System.out.println("Type 'a' to use your cards to attack.");
+        System.out.println("Type the card number to play that card.");
+        System.out.println("Type 'x' to see your health.");
+        System.out.println("Type 'z' to see your opponent's health.");
+        System.out.println("Type 'end' to end your turn.\n");
+    }
+
+    public void attack(Card c){
+
+    }
+
     public void turn(Player p){
         p.nextTurn();
         p.giveCards();
 
         System.out.println("It is " + p.getName() + "'s turn.");
         String userInput = "";
-
+        instruct(p);
         while (!userInput.equals("end")) {
-            System.out.println("Type 'p' to see how much power you have.");
-            System.out.println("Type 'h' to see your hand.");
-            System.out.println("Type 'b' to see your board.");
-            System.out.println("Type 'o' to see your opponent's board.");
-            System.out.println("Type 'a' to use your cards to attack.");
-            System.out.println("Type the card number to play that card.");
-            System.out.println("Type 'x' to see your health.");
-            System.out.println("Type 'z' to see your opponent's health.");
-            System.out.println("Type 'end' to end your turn.\n");
             userInput = scan.nextLine();
             switch (userInput) {
+                case "?":
+                    instruct(p);
+                    break;
                 case "p":
                     p.getPower();
                     break;
